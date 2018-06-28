@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ApplicationModule } from './app.module';
 import * as express from 'express';
 import * as cors from 'cors';
-import * as bodyParser from "body-parser";
+import * as bodyParser from 'body-parser';
 
 function addMiddleware(expressApp): void {
     expressApp.use(bodyParser.json());

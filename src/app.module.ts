@@ -1,18 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
-import {BrokerGateway} from "./broker/broker.gateway";
+import { BrokerGateway } from './gateways/broker.gateway';
 
 @Module({
   imports: [
   ],
   controllers: [
-    AppController
+      AppController,
   ],
-  components: [
-      BrokerGateway
-  ]
+  providers: [
+      BrokerGateway,
+  ],
 })
 export class ApplicationModule {
     constructor() {}
