@@ -1,2 +1,8 @@
-<div></div>
+<div *ngIf="!(counter$ | async)">
+  <pre style="font-size: 28px;">Connecting...</pre>
+</div>
+<div *ngIf="(counter$ | async)">
+  <pre style="font-size: 28px;">Realtime connection established since:</pre>
+  <pre style="font-size: 40px;">{{counter$ | async}}s</pre>
+</div>
 

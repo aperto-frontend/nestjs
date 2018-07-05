@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
+import { Subject } from "rxjs/Subject";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import * as io from 'socket.io-client';
 export class AppComponent implements OnInit {
 
   socket: any;
+
+  counter$: Subject<number> = new Subject<number>();
 
   constructor(private http: HttpClient) {
 
@@ -23,7 +26,7 @@ export class AppComponent implements OnInit {
     data.subscribe(console.log);
 
     this.socket.on('connect', () => console.log('connected'));
-    this.socket.on('events', (d) => console.log(d));
+    this.socket.on('events', data => this.counter$.next(data));
 
     this.socket.emit('events');
   }
